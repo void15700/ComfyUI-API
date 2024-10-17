@@ -1,0 +1,396 @@
+{
+  "6": {
+    "inputs": {
+      "text": [
+        "79",
+        0
+      ],
+      "clip": [
+        "83",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "13",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "10": {
+    "inputs": {
+      "vae_name": "ae.sft"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "11": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "12": {
+    "inputs": {
+      "unet_name": "flux1-dev.sft",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "13": {
+    "inputs": {
+      "noise": [
+        "90:0",
+        0
+      ],
+      "guider": [
+        "22",
+        0
+      ],
+      "sampler": [
+        "90:1",
+        0
+      ],
+      "sigmas": [
+        "90:3",
+        0
+      ],
+      "latent_image": [
+        "90:2",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "22": {
+    "inputs": {
+      "model": [
+        "83",
+        0
+      ],
+      "conditioning": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "45": {
+    "inputs": {
+      "enabled": true,
+      "swap_model": "inswapper_128.onnx",
+      "facedetection": "retinaface_resnet50",
+      "face_restore_model": "GFPGANv1.4.pth",
+      "face_restore_visibility": 1,
+      "codeformer_weight": 1,
+      "input_image": [
+        "8",
+        0
+      ],
+      "source_image": [
+        "73",
+        0
+      ]
+    },
+    "class_type": "ReActorFaceSwapOpt",
+    "_meta": {
+      "title": "ReActor 🌌 Fast Face Swap [OPTIONS]"
+    }
+  },
+  "71": {
+    "inputs": {
+      "text": [
+        "72",
+        0
+      ]
+    },
+    "class_type": "DisplayText",
+    "_meta": {
+      "title": "Display Text"
+    }
+  },
+  "72": {
+    "inputs": {
+      "temperature": 0.7,
+      "top_k": 25,
+      "top_p": 0.7000000000000001,
+      "max_tokens": 250,
+      "prompt": "output a description of size of this person's face. Describe the shape of their face using the best words you can. Give their eye color. Do they have any facial hair? If they do, what kind of facial hair do they have? If they have facial hair, is it a beard, a mustache, a gotee, what color is all their facial hair, is some of it gray indicating old age, is it closely shaved, long, short, what is it? Describe their hair style. Do they have hair or are they bald, or is it a buzz cut? If they do have hair what color is it, are there highlights in certain areas and if so what color are those? What is the color of their hair? Describe the shape of the hair and it's length in detail. What kind of hair type is it? How long is the hair? Describe the skin color of their face, the type of skin tone. Describe the shape, width, and length of their nose, and it's size. What kind of expression or smile or frown is on their face? Describe the build of their body if you can see it. What would you guess is the age of this person? Do they have a jawline?. If so describe it's shape? What is their race or skin tone or color? Give your best guess of if they are a man or a woman. Is it a man or a woman?",
+      "image": [
+        "73",
+        0
+      ],
+      "source_path": [
+        "75",
+        0
+      ]
+    },
+    "class_type": "LlamaVision",
+    "_meta": {
+      "title": "Llama Vision Node"
+    }
+  },
+  "73": {
+    "inputs": {
+      "image": "22 original.webp",
+      "upload": "image"
+    },
+    "class_type": "ImageLoader",
+    "_meta": {
+      "title": "Load Image Advanced"
+    }
+  },
+  "74": {
+    "inputs": {
+      "inputcount": 1,
+      "Update inputs": null,
+      "path_1": [
+        "73",
+        2
+      ]
+    },
+    "class_type": "MultiplePathsInput",
+    "_meta": {
+      "title": "Multiple Paths Input"
+    }
+  },
+  "75": {
+    "inputs": {
+      "value": [
+        "74",
+        0
+      ]
+    },
+    "class_type": "UnloadAllModels",
+    "_meta": {
+      "title": "UnloadAllModels"
+    }
+  },
+  "77": {
+    "inputs": {
+      "string1": "As solarpunk character in fortnite video game, smalleyes:2.0 , looking straight forward at camera. Large nametag on purple uniform says \"",
+      "string2": "\". solarpunk village with glass geodesic domes and solar panels behind him.  Bright blue sky. Lush and organic. Photorealistic face.",
+      "separator": "NAMETAG"
+    },
+    "class_type": "StringCombiner",
+    "_meta": {
+      "title": "String Combiner Node"
+    }
+  },
+  "78": {
+    "inputs": {
+      "string1": "Photorealistic video game avatar full-length portrait, clean shaven. ",
+      "string2": [
+        "80",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "StringCombiner",
+    "_meta": {
+      "title": "String Combiner Node"
+    }
+  },
+  "79": {
+    "inputs": {
+      "string1": [
+        "78",
+        0
+      ],
+      "string2": [
+        "77",
+        0
+      ],
+      "separator": " "
+    },
+    "class_type": "StringCombiner",
+    "_meta": {
+      "title": "String Combiner Node"
+    }
+  },
+  "80": {
+    "inputs": {
+      "prompt": [
+        "84",
+        0
+      ],
+      "model": "gpt-4o",
+      "role": "AI Assistant",
+      "append_string": "",
+      "seed": 0
+    },
+    "class_type": "ChatGptPrompt",
+    "_meta": {
+      "title": "ChatGPT Prompt Node"
+    }
+  },
+  "81": {
+    "inputs": {
+      "text": [
+        "80",
+        0
+      ]
+    },
+    "class_type": "DisplayText",
+    "_meta": {
+      "title": "Display Text"
+    }
+  },
+  "83": {
+    "inputs": {
+      "lora_name": "smalleyes.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "12",
+        0
+      ],
+      "clip": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "84": {
+    "inputs": {
+      "string1": "remove everything from this message that has anything to do with environment, clothing, glasses, headphones, jewelry, or facial hair. I don't want anything from the following message except things to do with the person's raw physical visual features and age. Leave out anything to do with hands. If the message contains somebody's name, leave that out. Remove repetitions. HERE IS THE MESSAGE TO SORT:",
+      "string2": [
+        "72",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "StringCombiner",
+    "_meta": {
+      "title": "String Combiner Node"
+    }
+  },
+  "88": {
+    "inputs": {
+      "value": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "UnloadAllModels",
+    "_meta": {
+      "title": "UnloadAllModels"
+    }
+  },
+  "93": {
+    "inputs": {
+      "text": [
+        "79",
+        0
+      ]
+    },
+    "class_type": "DisplayText",
+    "_meta": {
+      "title": "Display Text"
+    }
+  },
+  "97": {
+    "inputs": {
+      "threshold": 0.6,
+      "torchscript_jit": "default",
+      "image": [
+        "88",
+        0
+      ]
+    },
+    "class_type": "InspyrenetRembgAdvanced",
+    "_meta": {
+      "title": "Inspyrenet Rembg Advanced"
+    }
+  },
+  "98": {
+    "inputs": {
+      "images": [
+        "97",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "90:0": {
+    "inputs": {
+      "noise_seed": 331153565411203
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "90:1": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "90:2": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "90:3": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1,
+      "model": [
+        "83",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  }
+}
